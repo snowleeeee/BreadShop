@@ -24,7 +24,11 @@ public class DAO {
 			String password = "hr";
 
 			conn = DriverManager.getConnection(url, id, password);
-
+			/*
+			 * InitialContext ic = new InitialContext();
+			 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle"); 
+			 * conn= ds.getConnection();
+			 */
 			
 
 			System.out.println("연결성공");

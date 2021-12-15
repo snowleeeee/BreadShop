@@ -13,5 +13,7 @@
 	<a href='product/productUpdate.jsp'>update...</a>
 	<a href='product/productDelete.jsp'>delete...</a>
 	<a href='borderList.do'>게시판</a>
+	<a href='login.do'>로그인</a>
+	<a href='breadShop/memberInput.jsp'>회원가입</a>
 </body>
 </html>

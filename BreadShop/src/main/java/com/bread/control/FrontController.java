@@ -32,14 +32,20 @@ public class FrontController extends HttpServlet {
 		list.put("/borderUpdateForm.do", new BorderUpdateFormController());
 		list.put("/commentInsert.do", new CommentInsertController());
 		list.put("/commentList.do", new CommentListController());
+		
+		list.put("/memberinsert.do", new MemberInsertController());
+		list.put("/login.do", new LoginController());
+		list.put("/logout.do", new LogoutController());
 	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String url = req.getRequestURI();// uri : 알짜배기만 가져오기
+		System.out.println(url);
 		String context = req.getContextPath();
 		String path = url.substring(context.length());
-
+		System.out.println(path);
+		
 		Controller subCont = list.get(path);
 		subCont.execute(req, res);
 	}

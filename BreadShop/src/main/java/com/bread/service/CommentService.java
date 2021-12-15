@@ -9,8 +9,8 @@ public class CommentService {
 	
 	CommentDAO dao = new CommentDAO();
 	
-	public List<CommentVO> commentAll(){
-		return dao.commentList();
+	public List<CommentVO> commentAll(int borderId){
+		return dao.commentList(borderId);
 	}
 	
 	//등록  
