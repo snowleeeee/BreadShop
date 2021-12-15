@@ -8,12 +8,15 @@
 </head>
 <body>
 	
-	<h3>상품검색</h3>
+	<h3>상품 검색</h3>
 	<form action="../productSearch.do" method="get">
-		상품명: <input type='text' name='product_name' ><br>
+		상품명: <input type='text' name='name' ><br>
 		<input type='hidden' name='job' value ='search'>
 		<input type='submit' value='검색'>
 	</form>
+	
+	
+	
 
 </body>
 </html>

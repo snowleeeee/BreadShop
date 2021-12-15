@@ -1,12 +1,12 @@
 <%@page import="com.bread.vo.BreadProductVO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>productList.jsp</title>
 </head>
 <%-- <%
@@ -14,20 +14,20 @@ String productId = (String) session.getAttribute("productId");
 String productJob = (String) session.getAttribute("productJob");
 %> --%>
 
-<!-- ·Î±×ÀÎ ·Î±×¾Æ¿ô ±â´É ÀÏ´Ü Àû¾î¸¸ µÒ -->
-<%-- <div style=¡°text-align: right¡±>
-<a href=member_info.jsp><%=id%></a>´Ô ¾È³çÇÏ¼¼¿ä!&nbsp;
+<!-- ë¡œê·¸ì¸ ë¡œê·¸ì•„ì›ƒ ê¸°ëŠ¥ ì¼ë‹¨ ì ì–´ë§Œ ë‘  -->
+<%-- <div style=â€œtext-align: rightâ€>
+<a href=member_info.jsp><%=id%></a>ë‹˜ ì•ˆë…•í•˜ì„¸ìš”!&nbsp;
  <%if(job.equals("admin")) {%>
- <a href=manager.jsp>°ü¸®ÀÚ</a>&nbsp;
+ <a href=manager.jsp>ê´€ë¦¬ì</a>&nbsp;
  <% } else if(job.equals("member")){%>
- <a href=seller.jsp>ÆÇ¸ÅÀÚ</a>&nbsp;
+ <a href=seller.jsp>íŒë§¤ì</a>&nbsp;
  <%}%>
- <a href=login.jsp>·Î±×¾Æ¿ô</a>
+ <a href=login.jsp>ë¡œê·¸ì•„ì›ƒ</a>
  </div> --%>
 
 
 <body>
-	<!-- ÀüÃ¼ ÄÁÅ×ÀÌ³Ê -->
+	<!-- ì „ì²´ ì»¨í…Œì´ë„ˆ -->
 	<section>
 		<%
 		List<BreadProductVO> list = (List<BreadProductVO>) request.getAttribute("productList");
@@ -42,8 +42,8 @@ String productJob = (String) session.getAttribute("productJob");
 
 		<div class="container">
 			<div class="container-head">
-				<a href='productSearchOutput.jsp?productName=<%=vo.getProductName()%>'>
-				<!--  jsp¸»°í do·Î °¡¾ßÇÔ!!!!!!!!!!!!! ÀÌ°Å¸¸ ¼öÁ¤ÇÏ¸é µÉ°Å°°À½...  -->
+				<a href='productSearchOutput.jsp?productName=<%=vo.getProductName()%>' >
+				<!--  jspë§ê³  doë¡œ ê°€ì•¼í•¨!!!!!!!!!!!!! ì´ê±°ë§Œ ìˆ˜ì •í•˜ë©´ ë ê±°ê°™ìŒ...  -->
 				<img src="images/<%=vo.getProductImage()%>" width="200" border="0" />
 				</a><br>
 			</div>
@@ -52,7 +52,7 @@ String productJob = (String) session.getAttribute("productJob");
 				<%=vo.getProductPrice()%>
 			</div>
 			<div class="container-footer">
-				<div class="add-cart">Àå¹Ù±¸´Ï Ãß°¡</div>
+				<div class="add-cart">ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€</div>
 			</div>
 		</div>
 
@@ -62,17 +62,17 @@ String productJob = (String) session.getAttribute("productJob");
 		%>
 
 	</section>
-	<!---------------------------ÀÏ´ÜÀº ÀÌ°ÍÀú°Í ³Ö¾îº»°Çµ¥ ÇÊ¿ä ¾øÀ»°Å °°À½.... ¤Ğ
+	<!---------------------------ì¼ë‹¨ì€ ì´ê²ƒì €ê²ƒ ë„£ì–´ë³¸ê±´ë° í•„ìš” ì—†ì„ê±° ê°™ìŒ.... ã… 
 	1<form action="productList.jsp" method="post">
 		<section>
 			<hr width='600' size='2' noshade>
-			<h2>¹°Ç° ¸ñ·Ï</h2>
+			<h2>ë¬¼í’ˆ ëª©ë¡</h2>
 			<hr width='600' size='2' noshade>
 			</br> </br>
 			<script type="text/javascript">
 				
 			</script>
-			<!-- »óÇ° ¸ñ·Ï Ãâ·Â 
+			<!-- ìƒí’ˆ ëª©ë¡ ì¶œë ¥ 
 			<div class="container">
 				<div class="container-head"></div>
 				<div class="container-center"></div>

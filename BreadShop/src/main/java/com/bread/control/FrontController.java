@@ -9,23 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class FrontController extends HttpServlet {
 
 	HashMap<String, Controller> list = null;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-
+		// 설 product
 		list = new HashMap<String, Controller>();
 		list.put("/productList.do", new ProductListController());
 		list.put("/productInsert.do", new ProductInsertController());
 		list.put("/productSearch.do", new ProductSearchController());
 		list.put("/productUpdate.do", new ProductUpdateController());
 		list.put("/productDelete.do", new ProductDeleteController());
-		//설영 
+		list.put("/productSearchList.do", new ProductSearchListController());
+		
+		// 설 cart
+		list.put("cartList.do", new CartInsertController());
+		
+		// 설영
 		list.put("/borderList.do", new BorderListController());
-		list.put("/borderInsert.do", new BorderInsertControlloer());	
+		list.put("/borderInsert.do", new BorderInsertControlloer());
 		list.put("/borderUpdate.do", new BorderUpdateControlloer());
 		list.put("/borderDelete.do", new BorderDeleteControlloer());
 		list.put("/borderOne.do", new BorderOneController());
@@ -37,8 +41,10 @@ public class FrontController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String url = req.getRequestURI();// uri : 알짜배기만 가져오기
+		System.out.println("url : " + url);
 		String context = req.getContextPath();
 		String path = url.substring(context.length());
+		System.out.println("path : " + path);
 
 		Controller subCont = list.get(path);
 		subCont.execute(req, res);

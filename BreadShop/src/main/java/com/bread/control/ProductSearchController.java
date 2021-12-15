@@ -13,21 +13,25 @@ public class ProductSearchController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		String productName = req.getParameter("name");
+		String productId = req.getParameter("name");
 		String job = req.getParameter("job");
 
 		ProductService service = new ProductService();
-		BreadProductVO vo = service.searchOne(productName);
+		BreadProductVO vo = service.searchOne(productId);
 		req.setAttribute("product", vo);
 
 		if (job.equals("search"))
 			req.getRequestDispatcher("product/productSearchOutput.jsp").forward(req, res);
-		
+
 		else if (job.equals("update"))
 			req.getRequestDispatcher("product/productUpdateForm.jsp").forward(req, res);
 
 		else if (job.equals("delete"))
+
 			req.getRequestDispatcher("product/productDeleteForm.jsp").forward(req, res);
+		
+//		else if(job.equals("searchList"))
+//			req.getRequestDispatcher("product/productSearchListOutput.jsp").forward(req, res);
 
 	}
 }

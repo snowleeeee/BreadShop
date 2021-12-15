@@ -1,16 +1,20 @@
 <%@page import="com.bread.vo.BreadProductVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<%
 	BreadProductVO vo = (BreadProductVO) request.getAttribute("product");
+	
 	%>
+	
+	
+	
 	<h3><%=vo.getProductName() %></h3>
 	<div>
 		<div><%=vo.getProductImage() %></div>
@@ -20,9 +24,19 @@
 			<div><%=vo.getProductGrade() %></div>
 			<div><%=vo.getProductCount() %></div>
 			<div><%=vo.getProductInventory() %></div>
-			<!-- count¸¦ ±¸¸ÅÀÚ ¼ö·Î ¹Ş¾Æµµ µÉ°Å°°À½ ÀÏ´Ü ³Ö¾î´Â º»´Ù... ³ªÁß¿¡ ¼öÁ¤ÇÏµç°¡ ÇÏÀÚ -->
+			<!-- countë¥¼ êµ¬ë§¤ì ìˆ˜ë¡œ ë°›ì•„ë„ ë ê±°ê°™ìŒ ì¼ë‹¨ ë„£ì–´ëŠ” ë³¸ë‹¤... ë‚˜ì¤‘ì— ìˆ˜ì •í•˜ë“ ê°€ í•˜ì -->
 		</div>
 	</div>
+	
+	<div>ì¥ë°”êµ¬ë‹ˆ...</div>
+	
+	<h3>ìˆ˜ì •</h3>
+	<form action="productUpdate.do" method="get" >
+		ìƒí’ˆëª… : <input type='text' name='name' value='<%=vo.getProductId()%>'> <br>
+		<input type='hidden' name ='job' value='update'>
+		<input type='submit' value='ìˆ˜ì •'>
+	</form>
+	
 
 </body>
 </html>
