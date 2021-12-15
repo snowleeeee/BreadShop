@@ -23,6 +23,15 @@ public class FrontController extends HttpServlet {
 		list.put("/productSearch.do", new ProductSearchController());
 		list.put("/productUpdate.do", new ProductUpdateController());
 		list.put("/productDelete.do", new ProductDeleteController());
+		//설영 
+		list.put("/borderList.do", new BorderListController());
+		list.put("/borderInsert.do", new BorderInsertControlloer());	
+		list.put("/borderUpdate.do", new BorderUpdateControlloer());
+		list.put("/borderDelete.do", new BorderDeleteControlloer());
+		list.put("/borderOne.do", new BorderOneController());
+		list.put("/borderUpdateForm.do", new BorderUpdateFormController());
+		list.put("/commentInsert.do", new CommentInsertController());
+		list.put("/commentList.do", new CommentListController());
 	}
 
 	@Override
