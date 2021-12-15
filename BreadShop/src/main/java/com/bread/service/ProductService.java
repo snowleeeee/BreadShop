@@ -18,9 +18,14 @@ public class ProductService {
 		return dao.productList();
 	}
 
+	// 조회 리스트
+	public List<BreadProductVO> searchList(String searchField, String productName) {
+		return dao.productSearchList(searchField, productName);
+	}
+
 	// 한건조회
-	public BreadProductVO searchOne(String productName) {
-		return dao.productSearch(productName);
+	public BreadProductVO searchOne(String productId) {
+		return dao.productSearch(productId);
 	}
 
 	// 수정

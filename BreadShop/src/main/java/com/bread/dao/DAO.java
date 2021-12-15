@@ -16,6 +16,9 @@ public class DAO {
 
 	public void connect() {
 		try {
+			
+			
+			
 //			예전에 하던거
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 

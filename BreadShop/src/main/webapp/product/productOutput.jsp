@@ -1,10 +1,10 @@
 <%@page import="com.bread.vo.BreadProductVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -14,15 +14,17 @@
 
 	
 	
-	<h1>ÀÔ·Â È®ÀÎ</h1>
-	<h3>»óÇ°¹øÈ£ : <%=vo.getProductId() %></h3>
-	<h3>»óÇ° ¸í : <%=vo.getProductName() %></h3>
-	<h3>»óÇ° ¼³¸í : <%=vo.getProductDesc() %></h3>
-	<h3>»óÇ° °¡°Ý : <%=vo.getProductPrice() %></h3>
-	<h3>»óÇ° ÀÌ¹ÌÁö : <%=vo.getProductImage() %></h3>
-	<h3>»óÇ° º°Á¡ : <%=vo.getProductGrade() %></h3>
-	<h3>º°Á¡À» ³²±ä °í°´ÀÇ ¼ö : <%=vo.getProductCount()%></h3>
-	<h3>»óÇ° °³¼ö : <%=vo.getProductInventory() %></h3>
+	<h1>ìž…ë ¥ í™•ì¸</h1>
+	<h3>ìƒí’ˆë²ˆí˜¸ : <%=vo.getProductId() %></h3>
+	<h3>ìƒí’ˆ ëª… : <%=vo.getProductName() %></h3>
+	<h3>ìƒí’ˆ ì„¤ëª… : <%=vo.getProductDesc() %></h3>
+	<h3>ìƒí’ˆ ê°€ê²© : <%=vo.getProductPrice() %></h3>
+	<h3>ìƒí’ˆ ì´ë¯¸ì§€ : <%=vo.getProductImage() %></h3>
+	<h3>ìƒí’ˆ ë³„ì  : <%=vo.getProductGrade() %></h3>
+	<h3>ë³„ì ì„ ë‚¨ê¸´ ê³ ê°ì˜ ìˆ˜ : <%=vo.getProductCount()%></h3>
+	<h3>ìƒí’ˆ ê°œìˆ˜ : <%=vo.getProductInventory() %></h3>
+	
+	
 	
 </body>
 </html>

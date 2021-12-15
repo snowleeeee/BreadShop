@@ -41,17 +41,60 @@ public class BreadProductDAO extends DAO {
 		return list;
 	} // list
 
+	// =======================================조회리스트=======================================
+	public List<BreadProductVO> productSearchList(String searchField, String searchText) {
+
+		List<BreadProductVO> list = new ArrayList<BreadProductVO>();
+		String sql = "SELECT *  FROM bread_product" + " WHERE " + searchField.trim();
+
+		connect();
+		// int productId, String productName, String productDesc int productPrice
+
+		try {
+
+			if (searchText != null && !searchText.equals("")) {// 이거 빼면 안 나온다ㅜ 왜지?
+				sql += " LIKE '%" + searchText.toUpperCase().trim() + "%' order by 1";
+			}
+
+			psmt = conn.prepareStatement(sql);
+
+			String searchName = "%" + searchText + "%";
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				BreadProductVO vo = new BreadProductVO();
+				vo.setProductDesc(rs.getString("product_desc"));
+				vo.setProductId(rs.getString("product_id"));
+				vo.setProductName(rs.getString("product_name"));
+				vo.setProductPrice(rs.getInt("product_price"));
+				vo.setProductImage(rs.getString("product_image"));
+				vo.setProductGrade(rs.getDouble("product_grade"));
+				vo.setProductCount(rs.getInt("product_count"));
+				vo.setProductInventory(rs.getInt("product_inventory"));
+
+				list.add(vo);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	} // list
+
 	// =======================================단건조회=======================================
-	public BreadProductVO productSearch(String productName) {
-		String sql = "SELECT * FROM bread_product WHERE product_name LIKE ?";
+	public BreadProductVO productSearch(String productId) {
+		String sql = "SELECT * FROM bread_product WHERE product_id LIKE ?";
 		connect();
 
 		try {
 			psmt = conn.prepareStatement(sql);
 
-			String searchName = "%" + productName + "%";
+			// String searchName = "%" + productName + "%";
 
-			psmt.setString(1, searchName);
+			psmt.setString(1, productId.toUpperCase());
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -166,22 +209,21 @@ public class BreadProductDAO extends DAO {
 
 	// =======================================삭제=======================================
 
-	public BreadProductVO deleteProduct(String productName) {
+	public BreadProductVO deleteProduct(String productId) {
 
 		// int productId, String productName, String productDesc, int productPrice,
 		// String productImage
-		String sql = "DELETE bread_product WHERE product_name LIKE ?";
+		String sql = "DELETE bread_product WHERE product_id LIKE ?";
 
 		BreadProductVO vo = new BreadProductVO();
 		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
 
-			String searchName = "%" + productName + "%";
+			// String searchName = "%" + productName + "%";
 
-			psmt.setString(1, searchName);
+			psmt.setString(1, productId);
 
-			
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 삭제");
 

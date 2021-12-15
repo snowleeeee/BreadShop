@@ -5,6 +5,23 @@
 	id="WebApp_ID" version="4.0">
 	<display-name>BreadShop</display-name>
 
+	<resource-ref>
+
+		<res-ref-name>jdbc/myoracle</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+	<filter>
+		<filter-name>charsetFilter</filter-name>
+		<filter-class>com.bread.control.CharsetFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>charsetFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
 	<servlet>
 		<servlet-name>frontController</servlet-name>
 		<servlet-class>com.bread.control.FrontController</servlet-class>
@@ -16,11 +33,6 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
