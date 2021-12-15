@@ -32,9 +32,9 @@ public class BreadCartDAO extends DAO {
 		// 입력 sql
 		String sql = "INSERT INTO bread_cart VALUES(?, ?, ?, ?, ?, ?, ?)";// bread_cart에 값 입력
 
-		// product에서 필요한 값 받아오기 productName, productId, productPrice, productImage
-//		String searchProduct = "SELECT product_name, product_id, product_price, product_image" + " FROM bread_product"
-//				+ " WHERE product_id = ? ";
+		// product 테이블의 inventory 고치기
+		String searchProduct = "SELECT product_inventory FROM bread_product WHERE product_id=?"; // inventory 값 찾기
+		String updateInventory = "UPDATE bread_product SET product_inventory=? WHERE product_id=?"; // inventory 값 바꾸기
 
 		BreadProductVO productVo = new BreadProductVO();
 
@@ -43,6 +43,8 @@ public class BreadCartDAO extends DAO {
 
 		int seq = -1;
 		int sum = 0;
+		int inventory = 0;
+
 		connect();
 		try {
 			// 시퀀스 받아오기
@@ -57,6 +59,7 @@ public class BreadCartDAO extends DAO {
 			// String cartId; String memberId; String productId; int cartPrice;
 			// int cartCount; String productName; String productImage;
 			sum = (cartCount * productVo.getProductPrice());
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, seq);
 			psmt.setString(2, memberId);
@@ -74,31 +77,26 @@ public class BreadCartDAO extends DAO {
 			psmt.setInt(1, seq);
 
 			rs = psmt.executeQuery();
+			System.out.println("cart 시퀀스 수정됨");
 
-			if (rs.next()) {
-				BreadCartVO cartVo = new BreadCartVO();
-				cartVo.setCartCount(rs.getInt("cart_count"));
-				cartVo.setCartId(rs.getString("cart_id"));
-				cartVo.setCartPrice(rs.getInt("cart_price"));
-				cartVo.setMemberId(rs.getString("member_id"));
-				cartVo.setProductId(rs.getString("product_id"));
-				cartVo.setProductImage(rs.getString("product_image"));
-				cartVo.setProductName(rs.getString("product_name"));
+			// bread_product의 inventory 수정하기
+			inventory = productVo.getProductInventory();
 
-				return cartVo;
+			inventory -= cartCount;
+			System.out.println("cartCount : " + cartCount);
 
-			}
-
-			System.out.println(r + "건 입력");
+			psmt = conn.prepareStatement(updateInventory);
+			psmt.setInt(1, inventory);
+			psmt.setString(2, productVo.getProductId());
+			rs = psmt.executeQuery();
+			System.out.println("productId 확인하기" + productVo.getProductId());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-
 		return null;
-
 	}
 
 	// 조회(어차피 전체출력할 일 없기 때문에 조회 리스트로 출력해야함)
