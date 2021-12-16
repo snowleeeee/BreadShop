@@ -15,6 +15,11 @@
 	<a href='product/productSearchList.jsp'>searchList...</a>
 	<a href='borderList.do'>게시판</a>
 	<a href='login.do'>로그인</a>
+	<a href='logout.do'>로그아웃</a>
 	<a href='breadShop/memberInput.jsp'>회원가입</a>
+	<form action='memberInfo.do' method='get'>
+		<input type='hidden' name='id' value='${sessionScope.id }'>
+		<input type='submit' value='내정보보기'>
+	</form>
 </body>
 </html>

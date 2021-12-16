@@ -40,9 +40,9 @@ public class BreadMemberDAO extends DAO{
 		connect();
 	
 		try {
-			rs = psmt.executeQuery();
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
+			rs = psmt.executeQuery();
 			if(rs.next()) {
 				BreadMemberVO vo = new BreadMemberVO();
 				

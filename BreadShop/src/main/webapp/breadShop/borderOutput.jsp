@@ -39,8 +39,9 @@
 	<form action='commentInsert.do' method='post'>
 		<h3>댓글</h3>
 		<input type='hidden' name='borderNo' value='<%=vo.getBorderId() %>'>
-		<input type='hidden' name='commentWriter'>
+		<input type='hidden' name='commentWriter' value='${sessionScope.id }'>
 			<textarea cols='40' rows='2' name='commentContent'></textarea>
+			<input type='password' name='commentPasswd'>
 			<input type="submit" value="댓글등록" >
 	</form>
 	<table border='1'>
@@ -48,6 +49,8 @@
 			<tr>
 				<td>${item.commentWriter }</td>
 				<td>${item.commentContent }</td>
+				<td><input type='button' value='수정' onclick="location.href='commentUpdate.do?commentNo=${item.commentNo}'"></td>
+				<td><input type='button' value='삭제' onclick="location.href='commentDelete.do?commentNo=${item.commentNo}'"></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -55,7 +55,7 @@ public class CommentDAO extends DAO {
 		psmt = conn.prepareStatement(sql);
 		psmt.setInt(1, seq);
 		psmt.setInt(2, vo.getBorderNo());
-		psmt.setString(3, "user1");
+		psmt.setString(3, vo.getCommentWriter());
 		psmt.setString(4, vo.getCommentContent());
 		psmt.setString(5, vo.getCommentPasswd());
 		//psmt.setString(6, vo.getCommentDay());

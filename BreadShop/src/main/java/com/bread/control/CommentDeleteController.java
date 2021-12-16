@@ -1,47 +1,37 @@
 package com.bread.control;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bread.service.BreadBorderService;
 import com.bread.service.CommentService;
-import com.bread.vo.BreadBorderVO;
 import com.bread.vo.CommentVO;
 
-public class CommentInsertController implements Controller {
+public class CommentDeleteController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-	
+		int commentNo = Integer.parseInt(req.getParameter("commentNo"));
 		int borderNo = Integer.parseInt(req.getParameter("borderNo"));
-		String commentContent = req.getParameter("commentContent");
 		String commentWriter = req.getParameter("commentWriter");
-		String CommentPasswd = req.getParameter("commentPasswd");
-	
+		String commentContent = req.getParameter("commentContent");
+		String commentPasswd = req.getParameter("commentPasswd");
+		
 		CommentVO vo = new CommentVO();
-
+		vo.setCommentNo(commentNo);
 		vo.setBorderNo(borderNo);
-		vo.setCommentContent(commentContent);
 		vo.setCommentWriter(commentWriter);
-		vo.setCommentPasswd(CommentPasswd);
-
-		CommentService service1 = new CommentService();
-		service1.insert(vo);
+		vo.setCommentContent(commentContent);
+		vo.setCommentPasswd(commentPasswd);
 		
-		List<CommentVO> list = service1.commentAll(borderNo);
-		req.setAttribute("commentList", list);
-		
-		BreadBorderService service = new BreadBorderService();
-		BreadBorderVO vo1 = service.borderOne(borderNo);
-		req.setAttribute("border", vo1);
-		
+		CommentService service = new CommentService();
+		service.delete(commentNo);
 		
 		req.getRequestDispatcher("breadShop/borderOutput.jsp").forward(req, res);
+		
 
 	}
 
