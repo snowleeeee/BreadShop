@@ -2,87 +2,45 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>productList.jsp</title>
 </head>
-<%-- <%
-String productId = (String) session.getAttribute("productId");
-String productJob = (String) session.getAttribute("productJob");
-%> --%>
-
-<!-- 로그인 로그아웃 기능 일단 적어만 둠 -->
-<%-- <div style=“text-align: right”>
-<a href=member_info.jsp><%=id%></a>님 안녕하세요!&nbsp;
- <%if(job.equals("admin")) {%>
- <a href=manager.jsp>관리자</a>&nbsp;
- <% } else if(job.equals("member")){%>
- <a href=seller.jsp>판매자</a>&nbsp;
- <%}%>
- <a href=login.jsp>로그아웃</a>
- </div> --%>
-
 
 <body>
 	<!-- 전체 컨테이너 -->
 	<section>
-		<%
-		List<BreadProductVO> list = (List<BreadProductVO>) request.getAttribute("productList");
-
-		for (BreadProductVO vo : list) {
-		%>
-
-
-		<%-- <img alt="productOutput.jsp?productImage=<%=vo.getProductImage()%>"
-			src=""> --%>
 		
 
-		<div class="container">
-			<div class="container-head">
-				<a href='productSearchOutput.jsp?productName=<%=vo.getProductName()%>' >
-				<!--  jsp말고 do로 가야함!!!!!!!!!!!!! 이거만 수정하면 될거같음...  -->
-				<img src="images/<%=vo.getProductImage()%>" width="200" border="0" />
-				</a><br>
-			</div>
-			<div class="container-body">
-				<h1><%=vo.getProductName()%></h1>
-				<%=vo.getProductPrice()%>
-			</div>
-			<div class="container-footer">
-				<div class="add-cart">장바구니 추가</div>
-			</div>
-		</div>
-
-
-		<%
-		}
-		%>
-
-	</section>
-	<!---------------------------일단은 이것저것 넣어본건데 필요 없을거 같음.... ㅠ
-	1<form action="productList.jsp" method="post">
-		<section>
-			<hr width='600' size='2' noshade>
-			<h2>물품 목록</h2>
-			<hr width='600' size='2' noshade>
-			</br> </br>
-			<script type="text/javascript">
-				
-			</script>
-			<!-- 상품 목록 출력 
+		<c:forEach var="prod" items="${requestScope.productList }">
+		
 			<div class="container">
-				<div class="container-head"></div>
-				<div class="container-center"></div>
-				<div class="container-footer"></div>
+				<div class="container-head">
+					<a href='productSearchOutput.jsp?productName=${pord.productName}' >
+					<!--  jsp말고 do로 가야함!!!!!!!!!!!!! 이거만 수정하면 될거같음...  -->
+					<img src="images/${prod.productImage}" width="200" border="0" /> 
+					</a><br>
+				</div>
+				<div class="container-body">
+					<h1>${prod.productName}</h1>
+					${prod.productPrice}
+				</div>
+				<div class="container-footer">
+					<form action="cartInsert.do" method="get">
+					<!-- 필요한 값 String memberId, String productId, int cartCount -->
+						cartCount : <input type="text" name="cartCount" value='1'>
+						memberId : <input type="text" name="memberId" value='${sessionScope.id }'>
+						productId : <input type="text" name="productId" value='${prod.productId }'>
+						<input type="submit" value="장바구니 추가">
+					</form>
+				</div>
 			</div>
+		</c:forEach>
+	</section>
 
-
-		</section>
-
-	</form>-->
 
 
 </body>

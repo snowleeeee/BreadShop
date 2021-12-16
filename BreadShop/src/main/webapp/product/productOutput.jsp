@@ -11,7 +11,7 @@
 	<%
 	BreadProductVO vo = (BreadProductVO) request.getAttribute("product");
 	%>
-
+	
 	
 	
 	<h1>입력 확인</h1>
