@@ -8,23 +8,38 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bread.service.ProductService;
 import com.bread.vo.BreadProductVO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class ProductUpdateController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		// 이미지
+		String saveUrl = req.getRealPath("/upload");
+		int maxSize = 30 * 1024 * 1024;
+		String encoding = "UTF-8";
+		MultipartRequest mRequest = new MultipartRequest(req, saveUrl, maxSize, encoding,
+				new DefaultFileRenamePolicy());
+
 		// product_id, product_name, product_desc, product_price, product_image,
 		// product_inventory
-		String productId = req.getParameter("product_id");
-		String productName = req.getParameter("product_name");
-		String productDesc = req.getParameter("product_desc");
-		String productPrice = req.getParameter("product_price");
-		String productImage = req.getParameter("product_image");
-		String productInventory = req.getParameter("product_inventory");
+		
+		String productId = mRequest.getParameter("product_id");
+		String productName = mRequest.getParameter("product_name");
+		String productDesc = mRequest.getParameter("product_desc");
+		String productPrice = mRequest.getParameter("product_price");
+		String productImage = mRequest.getFilesystemName("product_image");
+		String productInventory = mRequest.getParameter("product_inventory");
 
+		
+		
+		
+		
 		// 밑의 두개는 일단 넣어둬봤음...
-		String productCount = req.getParameter("product_count");
-		String productGrade = req.getParameter("product_grade");
+		String productCount = mRequest.getParameter("product_count");
+		String productGrade = mRequest.getParameter("product_grade");
+
 
 		BreadProductVO vo = new BreadProductVO();
 		vo.setProductId(productId);

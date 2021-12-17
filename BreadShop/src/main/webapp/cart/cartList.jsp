@@ -8,11 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+request.setCharacterEncoding("utf-8");
+String name = request.getParameter("name");
+int count=1;
+%>
+
+	
 	<section>
+		
 		<table>
 			<c:forEach var="cart" items="${requestScope.cartList }">
 				<tr>
-					<td>${cart.cartId }</td>
+					<td><%=count++ %></td>
 					<td>${cart.productId }</td>
 					<td>${cart.cartPrice }</td>
 					<td>${cart.cartCount }</td>
