@@ -62,6 +62,16 @@ public class CartInsertController implements Controller {
 
 		}
 
+		BreadCartVO vo = new BreadCartVO();
+
+		CartService service = new CartService();
+		vo = service.insert(memberId, productId, Integer.parseInt(cartCount));
+
+		req.setAttribute("cart", vo);
+		//req.getRequestDispatcher("/cartInsert.jsp").forward(req, res);
+		
+		
+
 	}
 
 }

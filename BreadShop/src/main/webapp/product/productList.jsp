@@ -23,6 +23,9 @@
 					
 						<!--  jsp말고 do로 가야함!!!!!!!!!!!!! 이거만 수정하면 될거같음...  -->
 						<img src="upload/${prod.productImage}" width="200" border="0" /> 
+					<a href='productSearchOutput.jsp?productName=${pord.productName}' >
+					<!--  jsp말고 do로 가야함!!!!!!!!!!!!! 이거만 수정하면 될거같음...  -->
+					<img src="images/${prod.productImage}" width="200" border="0" /> 
 					</a><br>
 				</div>
 				<div class="container-body">
@@ -36,6 +39,9 @@
 						<input type="text" name="memberId" value='${sessionScope.id }'>
 						<input type="text" name="productId" value='${prod.productId }'>
 						
+						cartCount : <input type="text" name="cartCount" value='1'>
+						memberId : <input type="text" name="memberId" value='${sessionScope.id }'>
+						productId : <input type="text" name="productId" value='${prod.productId }'>
 						<input type="submit" value="장바구니 추가">
 					</form>
 				</div>

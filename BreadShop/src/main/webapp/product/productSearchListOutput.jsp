@@ -78,6 +78,25 @@
 		
 		
 		
+		<div class="container-footer">
+			<div class="add-cart">장바구니 추가</div>
+		</div>
+
+		<h3>상품업데이트</h3>
+		<form action="productSearch.do" method="get">
+			상품번호 : <input type='text' name='name' value='<%=vo.getProductId()%>'>
+			<br> <input type='hidden' name='job' value='update'> <input
+				type='submit' value='수정'>
+		</form>
+
+		<h3>상품 삭제</h3>
+		<form action="productSearch.do" method="get">
+			상품번호 : <input type='text' name='name' value='<%=vo.getProductId()%>'>
+			<br> <input type='hidden' name='job' value='delete'> <input
+				type='submit' value='삭제'>
+		</form>
+
+
 	</div>
 
 
