@@ -38,30 +38,24 @@
 			<%=vo.getProductPrice()%>
 		</div>
 		<div class="container-footer">
-			<form action="cartInsert.do" method="get">
-				<!-- 필요한 값 String memberId, String productId, int cartCount -->
-				cartCount : <input type="text" name="cartCount" value='1'>
-				memberId : <input type="text" name="memberId" value='${sessionScope.id }'>
-				productId : <input type="text" name="productId" value='<%=vo.getProductId()%>'>
-				<input type="submit" value="장바구니 추가">
-			</form>
+			<div class="add-cart">장바구니 추가</div>
 		</div>
-		<div class="adminArea">
-			<h3>상품업데이트</h3>
-			<form action="productSearch.do" method="get">
-				상품번호 : <input type='text' name='name' value='<%=vo.getProductId()%>'>
-				<br> <input type='hidden' name='job' value='update'> <input
-					type='submit' value='수정'>
-			</form>
-	
-			<h3>상품 삭제</h3>
-			<form action="productSearch.do" method="get">
-				상품번호 : <input type='text' name='name' value='<%=vo.getProductId()%>'>
-				<br> <input type='hidden' name='job' value='delete'> <input
-					type='submit' value='삭제'>
-			</form>
 
-		</div>
+		<h3>상품업데이트</h3>
+		<form action="productSearch.do" method="get">
+			상품번호 : <input type='text' name='name' value='<%=vo.getProductId()%>'>
+			<br> <input type='hidden' name='job' value='update'> <input
+				type='submit' value='수정'>
+		</form>
+
+		<h3>상품 삭제</h3>
+		<form action="productSearch.do" method="get">
+			상품번호 : <input type='text' name='name' value='<%=vo.getProductId()%>'>
+			<br> <input type='hidden' name='job' value='delete'> <input
+				type='submit' value='삭제'>
+		</form>
+
+
 	</div>
 
 

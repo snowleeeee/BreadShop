@@ -22,11 +22,5 @@ public class CartService {
 	public BreadCartVO delete(String cartId) {
 		return dao.deleteCart(cartId);
 	}
-	
-	//수정
-	public BreadCartVO update(String memberId, String productId, int cartCount) {
-		return dao.cartUpdate(memberId, productId, cartCount);
-	}
-	
 
 }

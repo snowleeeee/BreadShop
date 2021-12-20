@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bread.service.CartService;
 import com.bread.service.ProductService;
 import com.bread.vo.BreadCartVO;
 import com.bread.vo.BreadProductVO;
@@ -12,33 +11,6 @@ import com.bread.vo.BreadProductVO;
 public class BreadCartDAO extends DAO {
 	// String cartId; String memberId; String productId; int cartPrice;
 	// int cartCount; String productName; String productImage;
-
-	// 수정
-
-	public BreadCartVO cartUpdate(String memberId, String productId, int cartCount) {
-
-		String sql = "UPDATE bread_cart"//
-				+ " SET cart_count=?"//
-				+ " WHERE member_id=? AND product_id=?";
-		connect();
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, ++cartCount);
-			psmt.setString(2, memberId);
-			psmt.setString(3, productId);
-
-			int r = psmt.executeUpdate();
-			if (r > 0) {
-				System.out.println(r + "건 변경");
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-
-	}
 
 	// 입력
 	public BreadCartVO cartInsert(String memberId, String productId, int cartCount) {
@@ -61,6 +33,7 @@ public class BreadCartDAO extends DAO {
 		String sql = "INSERT INTO bread_cart VALUES(?, ?, ?, ?, ?, ?, ?)";// bread_cart에 값 입력
 
 		// product 테이블의 inventory 고치기
+		String searchProduct = "SELECT product_inventory FROM bread_product WHERE product_id=?"; // inventory 값 찾기
 		String updateInventory = "UPDATE bread_product SET product_inventory=? WHERE product_id=?"; // inventory 값 바꾸기
 
 		BreadProductVO productVo = new BreadProductVO();
@@ -85,7 +58,6 @@ public class BreadCartDAO extends DAO {
 			// 장바구니 입력
 			// String cartId; String memberId; String productId; int cartPrice;
 			// int cartCount; String productName; String productImage;
-
 			sum = (cartCount * productVo.getProductPrice());
 
 			psmt = conn.prepareStatement(sql);
@@ -118,8 +90,6 @@ public class BreadCartDAO extends DAO {
 			psmt.setString(2, productVo.getProductId());
 			rs = psmt.executeQuery();
 			System.out.println("productId 확인하기" + productVo.getProductId());
-
-			//
 
 		} catch (SQLException e) {
 			e.printStackTrace();
