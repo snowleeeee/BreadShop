@@ -19,9 +19,10 @@
 		
 			<div class="container">
 				<div class="container-head">
-					<a href='productSearchOutput.jsp?productName=${pord.productName}' >
-					<!--  jsp말고 do로 가야함!!!!!!!!!!!!! 이거만 수정하면 될거같음...  -->
-					<img src="upload/${prod.productImage}" width="200" border="0" /> 
+					<a href='#' id='${prod.productId}' >
+					
+						<!--  jsp말고 do로 가야함!!!!!!!!!!!!! 이거만 수정하면 될거같음...  -->
+						<img src="upload/${prod.productImage}" width="200" border="0" /> 
 					</a><br>
 				</div>
 				<div class="container-body">
@@ -29,19 +30,37 @@
 					${prod.productPrice}
 				</div>
 				<div class="container-footer">
-					<form action="cartInsert.do" method="get">
+					<form action="cartInsert.do" method="get" id='cartLink' name='link'>
 					<!-- 필요한 값 String memberId, String productId, int cartCount -->
-						cartCount : <input type="text" name="cartCount" value='1'>
-						memberId : <input type="text" name="memberId" value='${sessionScope.id }'>
-						productId : <input type="text" name="productId" value='${prod.productId }'>
-						uri :  <input type='text' name='uri' value='<%= request.getServletPath() %>'>
-
+						<input type="text" name="cartCount" value='1'>
+						<input type="text" name="memberId" value='${sessionScope.id }'>
+						<input type="text" name="productId" value='${prod.productId }'>
+						
 						<input type="submit" value="장바구니 추가">
 					</form>
 				</div>
 			</div>
 		</c:forEach>
+		<form name='breadshop' action='productOne.do' method='post'>
+			<input type='text' name='productId'>
+		</form>
 	</section>
+	<script>
+	
+		let btns = document.querySelectorAll('.container-head >a');
+		console.log(btns);
+		
+		for(let i=0;i<btns.length;i++){
+			btns[i].addEventListener('click', function(e) {
+				e.preventDefault();
+				let id = e.target.parentElement.id;
+				console.log(id);
+				document.forms.breadshop.productId.value = id;
+				document.forms.breadshop.submit();
+			});
+		}
+		
+	</script>
 
 
 

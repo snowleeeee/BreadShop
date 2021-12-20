@@ -16,9 +16,7 @@ public class DAO {
 
 	public void connect() {
 		try {
-			
-			
-			
+
 //			예전에 하던거
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -28,11 +26,9 @@ public class DAO {
 
 			conn = DriverManager.getConnection(url, id, password);
 			/*
-			 * InitialContext ic = new InitialContext();
-			 * DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle"); 
-			 * conn= ds.getConnection();
+			 * InitialContext ic = new InitialContext(); DataSource ds = (DataSource)
+			 * ic.lookup("java:comp/env/jdbc/myoracle"); conn= ds.getConnection();
 			 */
-			
 
 			System.out.println("연결성공");
 		} catch (Exception e) {
