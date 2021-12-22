@@ -44,6 +44,8 @@ public class MemberInsertController implements Controller {
 			}
 		}
 		
+		
+		
 		if(!run) {
 			service.insert(vo);
 			req.setAttribute("member", vo);
