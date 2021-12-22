@@ -20,7 +20,7 @@
 			<a href='product/productUpdate.jsp'>update...</a>
 			<a href='product/productDelete.jsp'>delete...</a>
 			<a href='product/productSearchList.jsp'>searchList...</a>
-			
+			<a href='productList.do'>list...</a>
 			<a href='logout.do'>로그아웃</a>
 		</c:when>
 		
@@ -29,8 +29,16 @@
 			<a href='product/productSearchList.jsp'>searchList...</a>
 			
 			<a href='borderList.do'>게시판</a>
-			<a href='login.do'>로그인</a>
-			<a href='logout.do'>로그아웃</a>
+			
+			<c:choose>
+				<c:when test="${sessionScope.id eq null }">
+					<a href='login.do'>로그인</a>
+				</c:when>
+				<c:otherwise>
+					<a href='logout.do'>로그아웃</a>
+				</c:otherwise>
+			</c:choose>
+			
 			<a href='breadShop/memberInput.jsp'>회원가입</a>
 		
 			<form action='memberInfo.do' method='get'>
