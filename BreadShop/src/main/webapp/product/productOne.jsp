@@ -19,10 +19,10 @@
 	height: 500px;
 	text-align: center;
 	padding: 10px;
-	margin: 10px 18%;
+	margin: 100px 18%;
+	
 	background-color: cream;
 	border: gray 1px solid;
-	
 }
 
 .container-head {
@@ -48,7 +48,7 @@
 	border-bottom: solid 2px #888888;
 }
 
-.cartBtn {
+.cartBtn, .adminBtn {
 	background-color: #023586;
 	text-decoration: none;
 	color: white;
@@ -84,8 +84,13 @@
 	BreadProductVO vo = (BreadProductVO) request.getAttribute("productOne");
 	%>
 	<jsp:include page="../head.jsp"></jsp:include>
+
+	<c:set var="id" value="${sessionScope.id }"></c:set>
 	<section>
+	
+	
 		<div class="container">
+			
 			<div class="container-head">
 				<img src="upload/<%=vo.getProductImage()%>" width="400" border="0" />
 			</div>
@@ -94,15 +99,15 @@
 				<h1><%=vo.getProductName()%></h1>
 				<h2><%=vo.getProductPrice()%></h2>
 				<%=vo.getProductDesc()%>
-				
-				
+
+
 			</div>
 
 
 			<div class="container-footer">
-			
-			
-			<div class="star-area">
+
+
+				<div class="star-area">
 					<%
 					for (int i = 0; i < (int) vo.getProductGrade(); i++) {
 					%>
@@ -121,25 +126,54 @@
 					}
 					%>
 				</div>
-			
-			수량 : <select id="selectCount" onchange="onchangeFnc(event)">
-					<option value='0'>0</option>
-					<option value='1'>1</option>
-					<option value='2'>2</option>
-					<option value='3'>3</option>
-					<option value='4'>4</option>
-					<option value='5'>5</option>
+				<c:choose>
+					<c:when test="${id=='admin' }">
+						<div class="adminArea">
 
-				</select> <br>
-				<form action="cartInsert.do" method="get">
-					<!-- 필요한 값 String memberId, String productId, int cartCount -->
-					<!-- <input type="hidden" name="cartCount" value='1'> -->
-					<input type="hidden" name="memberId" value='${sessionScope.id }'>
-					<input type="hidden" name="productId"
-						value='<%=vo.getProductId()%>'> <input type="hidden"
-						name="cartCount"> <input type="submit" value="장바구니 추가"
-						class="cartBtn">
-				</form>
+							<form action="productSearch.do" method="get">
+								<input type='hidden' name='name' value='<%=vo.getProductId()%>'>
+								<br> <input type='hidden' name='job' value='update'>
+								<input type='submit' value='상품 업데이트' class="adminBtn">
+							</form>
+
+
+							<form action="productSearch.do" method="get">
+								<input type='hidden' name='name' value='<%=vo.getProductId()%>'>
+								<br> <input type='hidden' name='job' value='delete'>
+								<input type='submit' value='상품 삭제' class="adminBtn">
+							</form>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="memberArea">
+
+							수량 : <select id="selectCount" onchange="onchangeFnc(event)">
+								<option value='0'>0</option>
+								<option value='1'>1</option>
+								<option value='2'>2</option>
+								<option value='3'>3</option>
+								<option value='4'>4</option>
+								<option value='5'>5</option>
+
+							</select> <br>
+							<form action="cartInsert.do" method="get">
+								<!-- 필요한 값 String memberId, String productId, int cartCount -->
+								<!-- <input type="hidden" name="cartCount" value='1'> -->
+								<input type="hidden" name="memberId" value='${sessionScope.id }'>
+								<input type="hidden" name="productId"
+									value='<%=vo.getProductId()%>'> <input type="hidden"
+									name="cartCount"> <input type="submit" value="장바구니 추가"
+									class="cartBtn">
+							</form>
+
+						</div>
+
+
+					</c:otherwise>
+
+
+				</c:choose>
+
 			</div>
 		</div>
 	</section>

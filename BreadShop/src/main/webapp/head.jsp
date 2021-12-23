@@ -75,18 +75,39 @@ form {
 	background-color: white;
 	display: none;
 	color: #888888;
+	padding: 10px;
+	margin: 10px;
 }
 
 .slideMenu {
 	list-style: none;
 	padding-left: 0px;
+	height: 300px;
 }
 
 .slideMenu:hover .hide {
-	list-style: none;
+	list-style: block;
 	padding-left: 0px;
 	display: block;
 	position: absolute;
+	font-size: 20px;
+}
+
+.hide li {
+	padding: 5px;
+	list-style: none;
+}
+
+.hide li a:link, .hide li a:visited, .hide li a:hover {
+	color: #023586;
+}
+
+.insertCartBtn {
+	border: 0;
+	outline: 0;
+	background-color: white;
+	color: #023586;
+	font-size: 20px;
 }
 </style>
 
@@ -97,56 +118,72 @@ form {
 	<header>
 		<div class="header">
 			<div class="left">
-				<li class="slideMenu"><a><i class='fas fa-bars'
-						style='font-size: 36px'></i></a> <c:choose>
-						<c:when test="${sessionScope.id eq 'admin' }">
-							<ul class="hide">
-								<li><a href='logout.do'>로그아웃</a></li>
-								<li><a href='product/productInput.jsp'>상품 입력</a></li>
-								<li><a href='product/productUpdate.jsp'>상품 업데이트</a></li>
-								<li><a href='product/productDelete.jsp'>상품 삭제</a></li>
-								<li><a href='product/productSearchList.jsp'>상품 조회</a></li>
-								<li><a href='productList.do'>list...</a></li>
-							</ul>
-						</c:when>
-						<c:otherwise>
-							<ul class="hide">
-								<li><c:choose>
-										<c:when test="${sessionScope.id eq null }">
-											<a href='login.do'>로그인</a>
-											&nbsp; &nbsp;| &nbsp; &nbsp;
-											<a href='breadShop/memberInput.jsp'>회원가입</a>
+				<ul>
+					<li class="slideMenu"><a><i class='fas fa-bars'
+							style='font-size: 36px'></i></a> <c:choose>
+							<c:when test="${sessionScope.id eq 'admin' }">
+								<ul class="hide">
+									<li><a
+										href='${pageContext.request.contextPath }/logout.do'>로그아웃</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/productList.do'>전체
+											상품 조회</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/product/productInput.jsp'>상품
+											입력</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/product/productUpdate.jsp'>상품
+											업데이트</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/product/productDelete.jsp'>상품
+											삭제</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/product/productSearchList.jsp'>상품
+											조회</a></li>
 
-										</c:when>
-										<c:otherwise>
-											<a href='logout.do'>로그아웃</a>
+								</ul>
+							</c:when>
+							<c:otherwise>
+								<ul class="hide">
+									<li><c:choose>
+											<c:when test="${sessionScope.id eq null }">
+												<a href='${pageContext.request.contextPath }/login.do'>로그인</a>
+											&nbsp; &nbsp;| &nbsp; &nbsp;
+											<a
+													href='${pageContext.request.contextPath }/breadShop/memberInput.jsp'>회원가입</a>
+
+											</c:when>
+											<c:otherwise>
+												<a href='${pageContext.request.contextPath }/logout.do'>로그아웃</a>
 											&nbsp; &nbsp;| &nbsp; &nbsp;
 											<form action='memberInfo.do' method='get'>
-												<input type='hidden' name='id' value='${sessionScope.id }'>
-												<input type='submit' value='내정보보기'>
-											</form>
-											<form action="cartList.do" method="get">
-												memberID : <input type='text' name='memberId'
-													value=${sessionScope.id }> <br> <input
-													type='submit' value='장바구니 검색'>
-											</form>
-										</c:otherwise>
-									</c:choose></li>
+													<input type='hidden' name='id' value='${sessionScope.id }'>
+													<input type='submit' value='내정보보기' class="insertCartBtn">
+												</form>
 
-								<li><a href='productList.do'>list...</a></li>
-								<li><a href='product/productSearchList.jsp'>searchList...</a></li>
-								<li><a href='borderList.do'>게시판</a></li>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-						</c:otherwise>
-					</c:choose>
+											</c:otherwise>
+										</c:choose></li>
+
+									<li><a
+										href='${pageContext.request.contextPath }/productList.do'>전체
+											상품 보기</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/product/productSearchList.jsp'>상품
+											조회</a></li>
+									<li><a
+										href='${pageContext.request.contextPath }/borderList.do'>게시판</a></li>
+									<li><form action="cartList.do" method="get">
+											<input type='hidden' name='memberId'
+												value=${sessionScope.id }> <br> <input
+												type='submit' value='장바구니 검색' class="insertCartBtn">
+										</form></li>
+
+								</ul>
+							</c:otherwise>
+						</c:choose></li>
+				</ul>
 			</div>
-			<div>
-				<a href="index.jsp"><img alt="" src="upload/breadMainLogo.jpg"
-					width="300" class="mainLogo"></a>
-			</div>
+
 		</div>
 
 		<div>
@@ -161,7 +198,8 @@ form {
 				<c:choose>
 					<c:when test="${sessionScope.id eq null }">
 						<a href='login.do'>로그인</a>
-						&nbsp; &nbsp;| &nbsp; &nbsp; <a href='breadShop/memberInput.jsp'>회원가입</a>
+						&nbsp; &nbsp;| &nbsp; &nbsp; <a
+							href='${pageContext.request.contextPath }/breadShop/memberInput.jsp'>회원가입</a>
 					</c:when>
 					<c:otherwise>
 						<a href='logout.do'>로그아웃</a> &nbsp; &nbsp;| 
