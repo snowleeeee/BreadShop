@@ -16,7 +16,7 @@
 	}
 	.images>img {
 		vertical-align: bottom;
-		width: 25%;
+		width: 23%;
 		height: 580px ;
 		margin-right: -6px;
 		padding: 0;	
@@ -26,6 +26,7 @@
 <body>
 
 	<jsp:include page="head.jsp"></jsp:include>
+
 
 	<div class="container">
 		<div class="album">

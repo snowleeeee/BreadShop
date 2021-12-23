@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../head.jsp"></jsp:include>
 
 <%
 BreadProductVO vo = (BreadProductVO)request.getAttribute("product");
@@ -15,7 +16,7 @@ BreadProductVO vo = (BreadProductVO)request.getAttribute("product");
 	<h3>상품 정보 수정</h3>
 	<form action="productUpdate.do" method='post'>
 	
-		<!-- product_name, product_desc, product_price, product_image, product_inventory -->
+		
 	
 		상품 번호 : <input type='text' name='product_id' value='<%=vo.getProductId()%>' readonly> <br>
 		상품명 : <input type='text' name='product_name' value='<%=vo.getProductName()%>'> <br>	
