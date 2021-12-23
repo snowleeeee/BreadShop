@@ -1,94 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-	<title>Insert title here</title>
-	<style type="text/css">
-		* {
-			font-family: sans-serif;
-		}
 
-		header {
-			background-color: #023586;
-			height: 170px;
-		}
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js'
+	crossorigin='anonymous'></script>
+<title>Insert title here</title>
+<style>
+* {
+	font-family: sans-serif;
+}
 
-		.left {
-			float: left;
-			color: white;
-			padding: auto;
-		}
+header {
+	background-color: #023586;
+	height: 170px;
+}
 
-		.fa-bars {
-			margin: 60px;
-		}
+.left {
+	float: left;
+	color: white;
+	padding: auto;
+	width: 100px;
+	height: auto;
+}
 
-		.right {
-			float: right;
-		}
+.fa-bars {
+	margin: 60px;
+	color: white;
+}
 
-		.member>a,
-		.menu>a,
-		.member,
-		.menu {
-			text-decoration: none;
-			color: white;
-		}
+.right {
+	float: right;
+}
 
-		.mainLogo {
-			float: left;
-			padding: 60px;
-		}
+.member>a, .menu>a, .member, .menu {
+	text-decoration: none;
+	color: white;
+}
 
-		.member {
-			margin: 10px 10px;
-			font-size: medium;
-		}
+.mainLogo {
+	float: left;
+	padding: 60px;
+}
 
-		.menu {
-			margin: 10px 10px;
-			font-size: x-large;
-			font-weight: bold;
+.member {
+	margin: 10px 10px;
+	font-size: medium;
+}
 
-		}
+.menu {
+	margin: 10px 10px;
+	font-size: x-large;
+	font-weight: bold;
+}
 
-		.button {
-			border: 0;
-			outline: 0;
-			background-color: #023586;
-			color: white;
-		}
+.button {
+	border: 0;
+	outline: 0;
+	background-color: #023586;
+	color: white;
+}
 
-		form {
-			display: inline;
-		}
+form {
+	display: inline;
+}
 
-		.hide {
-			background-color: white;
-			display: none;
-			color: #888888;
-		}
+.hide {
+	background-color: white;
+	display: none;
+	color: #888888;
+}
 
-		.slideMenu {
-			list-style: none;
-			padding-left: 0px;
+.slideMenu {
+	list-style: none;
+	padding-left: 0px;
+}
 
-		}
-
-		.slideMenu:hover .hide {
-			list-style: none;
-			padding-left: 0px;
-			display: block;
-			position: absolute;
-		}
-	</style>
-
+.slideMenu:hover .hide {
+	list-style: none;
+	padding-left: 0px;
+	display: block;
+	position: absolute;
+}
+</style>
 
 
 </head>
@@ -97,11 +97,8 @@
 	<header>
 		<div class="header">
 			<div class="left">
-				<li class="slideMenu">
-					<a><i class='fas fa-bars' style='font-size: 36px'></i></a>
-
-
-					<c:choose>
+				<li class="slideMenu"><a><i class='fas fa-bars'
+						style='font-size: 36px'></i></a> <c:choose>
 						<c:when test="${sessionScope.id eq 'admin' }">
 							<ul class="hide">
 								<li><a href='logout.do'>로그아웃</a></li>
@@ -114,8 +111,7 @@
 						</c:when>
 						<c:otherwise>
 							<ul class="hide">
-								<li>
-									<c:choose>
+								<li><c:choose>
 										<c:when test="${sessionScope.id eq null }">
 											<a href='login.do'>로그인</a>
 											&nbsp; &nbsp;| &nbsp; &nbsp;
@@ -130,13 +126,12 @@
 												<input type='submit' value='내정보보기'>
 											</form>
 											<form action="cartList.do" method="get">
-												memberID : <input type='text' name='memberId' value=${sessionScope.id }>
-												<br>
-												<input type='submit' value='장바구니 검색'>
+												memberID : <input type='text' name='memberId'
+													value=${sessionScope.id }> <br> <input
+													type='submit' value='장바구니 검색'>
 											</form>
 										</c:otherwise>
-									</c:choose>
-								</li>
+									</c:choose></li>
 
 								<li><a href='productList.do'>list...</a></li>
 								<li><a href='product/productSearchList.jsp'>searchList...</a></li>
@@ -148,8 +143,17 @@
 						</c:otherwise>
 					</c:choose>
 			</div>
-			<div> <a href="index.jsp"><img alt="" src="upload/breadMainLogo.jpg" width="300" class="mainLogo"></a>
+			<div>
+				<a href="index.jsp"><img alt="" src="upload/breadMainLogo.jpg"
+					width="300" class="mainLogo"></a>
 			</div>
+		</div>
+
+		<div>
+			<a href="${pageContext.request.contextPath }/index.jsp"><img
+				alt=""
+				src="${pageContext.request.contextPath }/upload/breadMainLogo.jpg"
+				width="300" class="mainLogo"></a>
 		</div>
 
 		<div class="right">
@@ -157,25 +161,27 @@
 				<c:choose>
 					<c:when test="${sessionScope.id eq null }">
 						<a href='login.do'>로그인</a>
+						&nbsp; &nbsp;| &nbsp; &nbsp; <a href='breadShop/memberInput.jsp'>회원가입</a>
 					</c:when>
 					<c:otherwise>
-						<a href='logout.do'>로그아웃</a>
+						<a href='logout.do'>로그아웃</a> &nbsp; &nbsp;| 
+						<form action='memberInfo.do' method='get'>
+							<input type='hidden' name='id' value='${sessionScope.id }'>
+							<input type='submit' value='내정보보기' class="button member">
+						</form>
 					</c:otherwise>
 				</c:choose>
-				&nbsp; &nbsp;| &nbsp; &nbsp; <a href='breadShop/memberInput.jsp'>회원가입</a>
-				&nbsp; &nbsp; |<form action='memberInfo.do' method='get'>
-					<input type='hidden' name='id' value='${sessionScope.id }'>
-					<input type='submit' value='내정보보기' class="button member">
-				</form>
+
+
 			</div>
 			<div class="menu">
-				<a href='productList.do'>전체 상품 조회</a> &nbsp; |&nbsp; <a href='borderList.do'>후기</a>
-				&nbsp; |<form action="cartList.do" method="get">
+				<a href='productList.do'>전체 상품 조회</a> &nbsp; |&nbsp; <a
+					href='borderList.do'>후기</a> &nbsp; |
+				<form action="cartList.do" method="get">
 					<input type='hidden' name='memberId' value=${sessionScope.id }>
 					<br> <input type='submit' value='장바구니 검색' class="button menu">
 				</form>
 			</div>
-		</div>
 		</div>
 	</header>
 
