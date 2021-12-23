@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-
-	%>
+	<jsp:include page="../head.jsp"></jsp:include>
 	<table>
 		<tr>
 			<th>상품번호</th>
