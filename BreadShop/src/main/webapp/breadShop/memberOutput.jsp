@@ -46,7 +46,8 @@
 	.login_button {
 		margin-top: 20px;
 	}
-	.login_button > input[type=button]{
+
+	.login_button>input[type=button] {
 		width: 100px;
 		height: 50px;
 		position: relative;
@@ -77,7 +78,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<div class="login_button"> 
+		<div class="login_button">
 			<input type='button' value='로그인하기' onclick="location.href='login.do'">
 		</div>
 	</div>

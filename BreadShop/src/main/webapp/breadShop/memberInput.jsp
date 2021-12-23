@@ -43,18 +43,22 @@
 	.button {
 		margin-top: 10px;
 	}
+
 	.button>ul {
 		display: flex;
 	}
+
 	.button>ul>li {
 		margin-right: 30px;
 	}
-	input[type=submit]{
+
+	input[type=submit] {
 		margin-left: 50px;
 	}
+
 	input[type=submit],
 	input[type=reset],
-	input[type=button]{ 
+	input[type=button] {
 		height: 50px;
 		width: 100px;
 	}
@@ -66,11 +70,15 @@
 		<ul class="member_table">
 			<form action='../memberinsert.do' method='get'>
 				<div class="member_insert">
-					<li><span>아이디</span><br><input type='text' name='id' class="member_info" placeholder="아이디를 입력하세요"><br>
+					<li><span>아이디</span><br><input type='text' name='id' class="member_info"
+							placeholder="아이디를 입력하세요"><br>
 					</li>
-					<li><span>비밀번호</span><br><input type='password' name='passwd' class="member_info" placeholder="비밀번호를 입력하세요"></li>
-					<li><span>이름</span><br><input type='text' name='name' class="member_info" placeholder="이름을 입력하세요"></li>
-					<li><span>이메일</span><br><input type='email' name='mail' class="member_info" placeholder="이메일을 입력하세요"></li>
+					<li><span>비밀번호</span><br><input type='password' name='passwd' class="member_info"
+							placeholder="비밀번호를 입력하세요"></li>
+					<li><span>이름</span><br><input type='text' name='name' class="member_info" placeholder="이름을 입력하세요">
+					</li>
+					<li><span>이메일</span><br><input type='email' name='mail' class="member_info"
+							placeholder="이메일을 입력하세요"></li>
 				</div>
 		</ul>
 		<div class="button">
@@ -84,9 +92,9 @@
 	</div>
 </body>
 <script>
-function idCheck(){
-	window.open("idCheckForm.jsp","idCheck","width=400,height=350");
-}
+	function idCheck() {
+		window.open("idCheckForm.jsp", "idCheck", "width=400,height=350");
+	}
 </script>
 
 </html>

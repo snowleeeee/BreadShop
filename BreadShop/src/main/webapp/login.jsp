@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -53,6 +54,12 @@
 </style>
 
 <body>
+	<%
+		String errMsg = (String) session.getAttribute("errMsg");
+		if(errMsg==null) errMsg="";
+		
+		session.invalidate();
+	%>
 	<div class="login">
 		<a href='index.jsp' id='home'>홈으로가기</a>
 		<h1 align="center">LOGIN</h1>
@@ -63,6 +70,9 @@
 				<input type='submit' class="login_btn" value='LOGIN'>
 			</form>
 		</div>
+		<c:if test="">
+		<div id='errMsg' style='color:red'><%=errMsg %></div>
+		</c:if>
 	</div>
 </body>
 

@@ -135,6 +135,7 @@ public class BreadMemberDAO extends DAO{
 			psmt.setString(2, pw);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
+
 				BreadMemberVO vo = new BreadMemberVO();
 				vo.setId(rs.getString("id"));
 				vo.setPasswd(rs.getString("passwd"));

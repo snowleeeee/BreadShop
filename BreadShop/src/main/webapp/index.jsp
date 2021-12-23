@@ -16,8 +16,8 @@
 	}
 	.images>img {
 		vertical-align: bottom;
-		width: 433px;
-		height: 700px ;
+		width: 25%;
+		height: 580px ;
 		margin-right: -6px;
 		padding: 0;	
 	}

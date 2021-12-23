@@ -18,6 +18,7 @@
 		margin: auto;
 		margin-top: 50px;
 	}
+
 	tr>td>textarea {
 		width: 700px;
 		height: 280px;
@@ -25,7 +26,7 @@
 </style>
 
 <body>
-<jsp:include page="../head.jsp"></jsp:include>
+	<jsp:include page="../head.jsp"></jsp:include>
 	<div class='border'>
 		<form action='../borderInsert.do' method='post'>
 			<table id="detailBoard" width="800" border="3" bordercolor="lightgray">

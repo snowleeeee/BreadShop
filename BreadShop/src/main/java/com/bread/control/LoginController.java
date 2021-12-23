@@ -1,6 +1,7 @@
 package com.bread.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,14 +23,20 @@ public class LoginController implements Controller {
 		BreadMemberVO vo = service.login(id, passwd);
 		
 		HttpSession session = req.getSession();
+		PrintWriter out = res.getWriter();
 		
 		if( vo != null) {
+			
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("name", vo.getName());
 			
 			req.getRequestDispatcher("index.jsp").forward(req, res);
+			
 		} else {
-			req.getRequestDispatcher("login.jsp").forward(req, res);
+			
+			out.write("<script>alert('장바구니에 담긴 상품이 없습니다'); history.back(); </script>");
+			res.sendRedirect("login.jsp");
+			
 		}
 	}
 

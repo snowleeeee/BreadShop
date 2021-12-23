@@ -12,10 +12,11 @@
 	<meta charset="UTF-8">
 	<title>borderList.jsp</title>
 	<style>
-		*{
+		* {
 			margin: 0;
 			padding: 0;
 		}
+
 		#home {
 			position: relative;
 			left: 85%;
@@ -36,7 +37,7 @@
 </head>
 
 <body>
-<jsp:include page="../head.jsp"></jsp:include>
+	<jsp:include page="../head.jsp"></jsp:include>
 	<div class='border'>
 		<a href='index.jsp' id='home'>홈으로가기</a>
 		<table id="bList" width="800" border="3" bordercolor="lightgray">
@@ -57,7 +58,16 @@
 							<tr>
 								<td><a href="#" id="${item.borderId }">${item.borderId }</a></td>
 								<td>${item.borderTitle }</td>
-								<td>${item.borderWriter }</td>
+								<td>
+									<c:choose>
+										<c:when test="${item.borderWriter == null }">
+											탈퇴회원입니다
+										</c:when>
+										<c:otherwise>
+											${item.borderWriter }
+										</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 						</c:forEach>
 						<tr>
@@ -86,6 +96,7 @@
 			});
 		}
 	</script>
+
 </body>
 
 </html>

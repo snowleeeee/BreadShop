@@ -56,12 +56,21 @@
 </style>
 
 <body>
-<jsp:include page="../head.jsp"></jsp:include>
+	<jsp:include page="../head.jsp"></jsp:include>
 	<div class='border'>
 		<table id="detailBoard" width="800" border="3" bordercolor="lightgray">
 			<tr>
 				<th>NAME</th>
-				<td>${border.borderWriter }</td>
+				<td>
+					<c:choose>
+						<c:when test="${border.borderWriter == null }">
+							탈퇴회원입니다
+						</c:when>
+						<c:otherwise>
+							${border.borderWriter }
+						</c:otherwise>
+					</c:choose>
+				</td>
 			</tr>
 			<tr>
 				<th>TITLE</th>

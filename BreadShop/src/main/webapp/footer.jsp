@@ -13,20 +13,17 @@
 	}
 
 	footer {
-		position: relative;
+		position: absolute;
 		width: 100%;
-		height: 60px;
+		height: 50px;
 		text-align: center;
 		border-top: solid 1px rgb(175, 171, 171);
 	}
 
 	nav {
+		margin-top: 30px;
+	}
 
-		margin-top: 40px;
-	}
-	p{
-		padding-bottom: 50px;
-	}
 	nav>a,
 	p>span {
 		color: #808080;
