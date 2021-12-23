@@ -82,11 +82,13 @@
 			</tr>
 			<tr>
 				<td colspan="2">
+					<input type='button' value='목록' onclick="location.href='borderList.do'">
+					<c:if test="${border.borderWriter == sessionScope.id}">
 					<input type='button' value='수정'
 						onclick="location.href='borderUpdateForm.do?borderId=${border.borderId }'">
 					<input type='button' value='삭제'
 						onclick="location.href='borderDelete.do?borderId=${border.borderId }'">
-					<input type='button' value='목록' onclick="location.href='borderList.do'">
+					</c:if>
 				</td>
 			</tr>
 		</table>
@@ -102,7 +104,16 @@
 				<tbody class="comment_body">
 					<c:forEach var="item" items="${requestScope.commentList }">
 						<tr id=${item.commentNo} bgcolor="#F5F5F5">
-							<td width='100'>${item.commentWriter }</td>
+							<td width='120'>
+							<c:choose>
+								<c:when test="${item.commentWriter == null }">
+											탈퇴회원입니다
+								</c:when>
+								<c:otherwise>
+											${item.commentWriter }
+								</c:otherwise>
+							</c:choose>
+							</td>
 							<td width='350'>${item.commentContent }</td>
 							<td width='250'>${item.commentDay }</td>
 							<c:if test="${item.commentWriter == sessionScope.id}">
