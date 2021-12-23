@@ -10,6 +10,7 @@
 <body>
 <jsp:include page="../head.jsp"></jsp:include>
 
+<jsp:include page="../head.jsp"></jsp:include>
 <%
 BreadProductVO vo = (BreadProductVO)request.getAttribute("product");
 %>

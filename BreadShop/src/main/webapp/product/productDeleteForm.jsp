@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="../head.jsp"></jsp:include>
 <%
 BreadProductVO vo = (BreadProductVO)request.getAttribute("product");
 %>
