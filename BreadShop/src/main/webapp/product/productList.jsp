@@ -10,40 +10,28 @@
 <title>productList.jsp</title>
 
 <style>
-* {
-
-	
-}
 
 section {
 	width: 80%;
-	margin-top:100px;
-	margin-left:18%;
+	margin-top: 100px;
+	margin-left: 18%;
 	margin-right: 18%;
 }
 
 .container {
 	float: left;
-	width: 300px;
-	height : 350px;
+	width: 350px; height : 400px;
 	text-align: center;
 	padding: 10px;
-	margin:10px;
+	margin: 10px;
 	background-color: cream;
 	border: gray 1px solid;
-	
+	height: 400px;
 }
 
-
-
-.container-head,
-.container-body,
-.container-footer{ 
-justify-content: center;
-
-
+.container-head, .container-body, .container-footer {
+	justify-content: center;
 }
-
 
 .container-head>a {
 	width: 200px;
@@ -57,6 +45,16 @@ justify-content: center;
 	padding: 2px 3px;
 	margin: 2px 3px;
 }
+
+.memberBtn, .adminBtn {
+	background-color: #023586;
+	text-decoration: none;
+	color: white;
+	border: none;
+	padding: 2px 3px;
+	margin: 5px 3px;
+	width: 180px;
+}
 </style>
 </head>
 
@@ -66,15 +64,15 @@ justify-content: center;
 	<section>
 
 		<h1>전체 상품 조회</h1>
-		<br>
-		<br>
-		
+		<br> <br>
+
 		<c:forEach var="prod" items="${requestScope.productList }">
 
 			<div class="container">
 				<div class="container-head">
 					<a href='#' id='${prod.productId}'> <img
-						src="upload/${prod.productImage}" width="250" height="200" border="0" />
+						src="upload/${prod.productImage}" width="250" height="200"
+						border="0" />
 					</a>
 				</div>
 				<div class="container-body" align="center">
@@ -82,13 +80,46 @@ justify-content: center;
 					${prod.productPrice}
 				</div>
 				<div class="container-footer">
-					<form action="cartInsert.do" method="get" id='cartLink' name='link'>
-						<!-- 필요한 값 String memberId, String productId, int cartCount -->
-						<input type="hidden" name="cartCount" value='1'> <input
-							type="hidden" name="memberId" value='${sessionScope.id }'>
-						<input type="hidden" name="productId" value='${prod.productId }'>
-						<input type="submit" value="장바구니 추가" class="cartBtn">
-					</form>
+					<c:choose>
+						<c:when test="${id =='admin' }">
+							<div class="adminArea">
+								<form action="productSearch.do" method="get">
+									<input type='hidden' name='name' value='${prod.productId }'>
+									<br> <input type='hidden' name='job' value='update'>
+									<input type='submit' value='상품 업데이트' class="adminBtn">
+								</form>
+
+
+								<form action="productSearch.do" method="get">
+									<input type='hidden' name='name' value='${prod.productId }'>
+									<br> <input type='hidden' name='job' value='delete'>
+									<input type='submit' value='상품 삭제' class="adminBtn">
+								</form>
+
+							</div>
+
+
+						</c:when>
+						<c:otherwise>
+							<div class="memberArea">
+								<form action="cartInsert.do" method="get" id='cartLink'
+									name='link'>
+									<!-- 필요한 값 String memberId, String productId, int cartCount -->
+									<input type="hidden" name="cartCount" value='1'> <input
+										type="hidden" name="memberId" value='${sessionScope.id }'>
+									<input type="hidden" name="productId"
+										value='${prod.productId }'> <input type="submit"
+										value="장바구니 추가" class="cartBtn">
+								</form>
+
+							</div>
+
+						</c:otherwise>
+
+					</c:choose>
+
+
+
 				</div>
 			</div>
 		</c:forEach>

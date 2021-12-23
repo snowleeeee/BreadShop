@@ -216,18 +216,18 @@ public class BreadProductDAO extends DAO {
 
 		// int productId, String productName, String productDesc, int productPrice,
 		// String productImage
-		String sql = "DELETE bread_product WHERE product_id LIKE ?";
+		String sql = "DELETE bread_product WHERE product_name=?";
 
 		BreadProductVO vo = new BreadProductVO();
 		connect();
 		try {
 			psmt = conn.prepareStatement(sql);
 
-			// String searchName = "%" + productName + "%";
-
+			
 			psmt.setString(1, productId);
 
 			int r = psmt.executeUpdate();
+			System.out.println(productId);
 			System.out.println(r + "건 삭제");
 
 			if (r > 0) {

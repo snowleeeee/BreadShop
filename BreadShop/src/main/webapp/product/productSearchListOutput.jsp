@@ -12,16 +12,15 @@
 </head>
 <style>
 section {
-	width: 80%;
-	margin-top:100px;
-	margin-left:19%;
+	margin-top: 100px;
+	margin-left: 19%;
 	margin-right: 18%;
 }
 
 .container {
-	float: left;s
-	width: 300px;
-	height: 350px;
+	float: left;
+	width: 350px;
+	height: 400px;
 	text-align: center;
 	padding: 10px;
 	margin: 10px;
@@ -46,31 +45,31 @@ section {
 	margin: 5px 3px;
 	width: 180px;
 }
-.backBtn{
-background-color: #023586;
+
+.backBtn {
+	background-color: #023586;
 	text-decoration: none;
 	color: white;
 	border: none;
 	padding: 2px 3px;
-	margin-right:400px;
+	margin-right: 400px;
 	width: 100px;
 	float: right;
-	
-
 }
+
 </style>
 <body>
 	<jsp:include page="../head.jsp"></jsp:include>
-	
-	
+
+
 	<section>
-	
+	<c:set var="id" value="${sessionScope.id }"></c:set>
+      
 		<h1>상품 조회</h1>
-		
+
 		<input type='button' value='이전' onclick="clickFnc()" class="backBtn">
-		<br>
-		<br>
-		
+		<br> <br>
+
 		<%
 		List<BreadProductVO> list = (List<BreadProductVO>) request.getAttribute("productList");
 		if (list.size() == 0) {
@@ -88,9 +87,9 @@ background-color: #023586;
 
 		<div class="container">
 			<div class="container-head">
-				<a href='#' id='<%=vo.getProductId()%>'> 
-				<img src="upload/<%=vo.getProductImage()%>" width="250"
-					height="200" border="0" />
+				<a href='#' id='<%=vo.getProductId()%>'> <img
+					src="upload/<%=vo.getProductImage()%>" width="250" height="200"
+					border="0" />
 				</a><br>
 			</div>
 			<div class="container-body">
@@ -99,7 +98,9 @@ background-color: #023586;
 			</div>
 			<div class="container-footer">
 				<c:choose>
-					<c:when test="${sessionScope.id eq 'admin' }">
+				
+				
+					<c:when test="${id =='admin' }">
 						<div class="adminArea">
 
 							<form action="productSearch.do" method="get">
@@ -114,12 +115,11 @@ background-color: #023586;
 								<br> <input type='hidden' name='job' value='delete'>
 								<input type='submit' value='상품 삭제' class="adminBtn">
 							</form>
-
 						</div>
 					</c:when>
 
 					<c:otherwise>
-						<div class="container-footer">
+						<div class="memberArea">
 							<form action="cartInsert.do" method="get">
 								<!-- 필요한 값 String memberId, String productId, int cartCount -->
 								<input type="hidden" name="cartCount" value='1'> <input
@@ -163,9 +163,9 @@ background-color: #023586;
 			});
 		}
 		function clickFnc() {
-			
+
 			history.back();
-			
+
 		}
 	</script>
 
